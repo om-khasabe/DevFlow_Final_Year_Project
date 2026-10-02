@@ -1,0 +1,16 @@
+{
+  "name": "devflow-monitoring-app",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["frontend", "backend"],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace backend\" \"npm run dev --workspace frontend\"",
+    "install:all": "npm install",
+    "build": "npm run build --workspace frontend",
+    "start": "npm run start --workspace backend",
+    "test:e2e": "npm run test:e2e --workspace frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
