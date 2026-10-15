@@ -1,0 +1,43 @@
+services:
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: devflow-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: devflow-backend
+    ports:
+      - "4000:4000"
+    restart: unless-stopped
+
+  prom-server:
+    image: prom/prometheus:latest
+    container_name: devflow-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: devflow-grafana
+    ports:
+      - "8000:3000"
+    depends_on:
+      - prom-server
+    restart: unless-stopped

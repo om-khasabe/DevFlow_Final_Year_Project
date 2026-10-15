@@ -1,0 +1,6 @@
+projectKey=devflow-test
+serverUrl=http://localhost:9000
+serverVersion=26.9.0.129388
+dashboardUrl=http://localhost:9000/dashboard?id=devflow-test
+ceTaskId=bcb5070f-9017-4489-b1c2-09f623fd7fb7
+ceTaskUrl=http://localhost:9000/api/ce/task?id=bcb5070f-9017-4489-b1c2-09f623fd7fb7
